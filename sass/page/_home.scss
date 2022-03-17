@@ -1,0 +1,137 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+/* header */
+.headerPage {
+  position: relative;
+  margin: 2rem 0 2rem 0;
+
+  & h1 {
+    color: #d04f4f;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  & span::before {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 30px;
+    height: 30px;
+    background-image: url(/assets/search.svg);
+    background-repeat: no-repeat;
+    margin: 15px;
+    top: 95x;
+    right: -6px;
+    z-index: 10000;
+  }
+}
+
+/* filer buttons*/
+/*
+.filter {
+  color: white;
+}
+.filter::before {
+  content: '';
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  padding: 28px;
+  top: 0;
+  right: 0;
+  background: url(../assets/arrow.svg) no-repeat center;
+  transition: transform 0.3s ease-in-out;
+}
+*/
+/* drop down menu */
+/*
+.dropDown {
+  margin-bottom: 2rem;
+
+  & input::placeholder {
+    color: white;
+    font-weight: bold;
+  }
+
+  & input {
+    color: white;
+    font-weight: bold;
+  }
+
+  & datalist option {
+    color: blue;
+    background-color: blue;
+    background: blue;
+  }
+  
+  &__ingredient > li {
+    cursor: pointer;
+  }
+  
+}
+*/
+.btn-group,
+.btn-group-vertical {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* card recipes */
+
+.card {
+  &__img {
+    background-color: rgb(165, 165, 165);
+    height: 178px;
+  }
+
+  &__body {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    max-height: 186px;
+  }
+
+  & h2 {
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+  }
+
+  &__spanTime::before {
+    content: '\f017';
+  }
+
+  &__ulIngredient {
+    list-style: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 150px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+    padding-right: 0;
+  }
+
+  &__recipe {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+    padding-right: 1em;
+    margin: 0 -1em -2rem 0.5rem;
+  }
+}
+
+#noResult {
+  display: none;
+}
