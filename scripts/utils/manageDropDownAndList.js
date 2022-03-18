@@ -1,4 +1,9 @@
-function dropDown(eventPath, placeholder) {
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/**
+ * Au click, modifie l'intitulé du "placeholder" des bouttons
+ **/
+function buttonInputPlaceHolder(eventPath, placeholder) {
   if (eventPath.attributes[0].ownerElement.classList[6] == 'filter--active') {
     eventPath.classList.remove('filter--active')
     eventPath.firstElementChild.value = ''
@@ -53,28 +58,16 @@ function manageElementsList(
   )
 }
 
-function filtreIngredientsLists(e, ArrayListElements) {
-  let matchedList = ArrayListElements.filter((element) => {
-    return element.includes(e.target.value)
-  })
-  let matchedListNoDouble = matchedList.filter(onlyUniqueInliste)
-  console.log(matchedList)
-  return matchedListNoDouble
-}
-
 function getElementList(ingredeintsListChildren) {
   for (let i = 0; i < ingredeintsListChildren.length; i++) {
     ArrayListElements.push(ingredeintsListChildren[i].innerText)
   }
-
   return ArrayListElements
 }
 
 /**
  * DisplayListe - affiche les listes des éléments au dessous des bouttons
- * @param {Array} elements
- * @param {balise}
- */
+ **/
 
 function displayElementsList(recipesMatch, button, category) {
   /* 1. efface la liste */

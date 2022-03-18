@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+
 let matchedContents = []
 let matchedIngredients = []
 let matchedAppilances = []
@@ -21,20 +22,17 @@ class Main {
     this._recipes = recipes
   }
   main() {
-    displayRecipes(recipes)
-    displayElementsList(getIngredients(recipes), buttonIngretients)
-    displayElementsList(getAppliances(recipes), buttonAppliances)
-    displayElementsList(getUstensils(recipes), buttonUstensils)
+    manageDisplay()
 
-    /** Ecoute input de la search bar **/
+    /** Ecoute input de la searchbar **/
     const searchInput = document.querySelector('.form-control')
     searchInput.addEventListener('input', (e) => {
       const searchBarValue = e.target.value
       const elementsInUl = e.path[3].children[1].children[0].children
-      manageTagsAndSearchBar(searchBarValue, elementsInUl)
+      manageDisplay(searchBarValue, elementsInUl)
     })
 
-    /** Ecoute les listes pour afficher les tags sélectionnés **/
+    /** Ecoute les listes d'élémnts (ingrédients, appareils, ustensils) pour afficher les tags sélectionnés **/
     const elementList = document.querySelectorAll('.filter ul')
     elementList.forEach((element) => {
       element.addEventListener('click', (e) => {
@@ -45,9 +43,9 @@ class Main {
         const recipesUses = recipes
         filtredRecipes = matchedGolbal(clickedElement, recipesUses)
         displayTag(e, ulElementDomTag)
-        dropDown(divButton, inputPlaceHoder)
-        getTags(clickedElement)
-        manageTagsAndSearchBar()
+        buttonInputPlaceHolder(divButton, inputPlaceHoder)
+        getTags()
+        manageDisplay()
         ArrayListElements = []
       })
     })
@@ -56,31 +54,25 @@ class Main {
     const tags = document.querySelector('#tags')
     tags.addEventListener('click', (e) => {
       e.path[0].remove()
-      const searchBarValue = e.path[3].children[0].children[2].children[0].value
-      const elementsInUl = e.path[1].children
-
-      //getTags()
-      manageTagsAndSearchBar(searchBarValue, elementsInUl)
+      manageDisplay()
     })
 
     /** Ecoute les boutton "input"**/
-
     const btnFilter = document.querySelectorAll('.filter')
     btnFilter.forEach((button) => {
       button.addEventListener('click', (e) => {
         const eventPath = e.path[0]
         const placeholder = e.path[0].children[0].placeholder
-        dropDown(eventPath, placeholder)
+        buttonInputPlaceHolder(eventPath, placeholder)
       })
       button.addEventListener('input', (e) => {
         const arrayElementsListDropDown = getElementList(
           button.children[1].children
         )
-        const newIngredeintList = filtreIngredientsLists(
+        const newIngredeintList = filtreElementsListOnInput(
           e,
           arrayElementsListDropDown
         )
-
         displayElementsList(newIngredeintList, button)
       })
     })
@@ -89,6 +81,68 @@ class Main {
 const app = new Main(recipes)
 app.main()
 
+/**
+ * manageDisplay - Gère l'affichage des recettes listes d'élements et message de recettes non trouvés en fonction des cas :
+ * - Uniquement la serachBar (plus de trois lettre ou pas),
+ * - Uniquement les Tags
+ * - SerachBar et Tags (ou inversement)
+ **/
+function manageDisplay() {
+  let searchBarValue = document.querySelector('#search-input').value
+  let elementsInUl = document.querySelectorAll('#tags ul li')
+  const elementsTags = []
+  if (elementsInUl.length == 0 && searchBarValue.length > 2) {
+    removeArticles()
+    document.querySelector('#noResult').style.display = 'none'
+    matchedContents = matchContent(searchBarValue, recipes)
+    displayRecipes(matchedContents)
+    manageElementsList(matchedContents)
+  } else if (elementsInUl.length == 0 && searchBarValue.length < 2) {
+    document.querySelector('#noResult').style.display = 'none'
+    displayRecipes(recipes)
+    manageElementsList(recipes)
+  } else if (elementsInUl.length !== 0 && searchBarValue.length > 2) {
+    removeArticles()
+    for (let a = 0; a < elementsInUl.length; a++) {
+      elementsTags.push(elementsInUl[a].innerText)
+    }
+    elementsTags.forEach((tag) => getTags(tag))
+    matchedContents = matchContent(searchBarValue, recipeMatchedTags)
+    manageElementsList(
+      matchedContents,
+      ArrayTagsItemIngredients,
+      ArrayTagsItemAppilances,
+      ArrayTagsItemUstenceils
+    )
+    if (matchedContents.length == 0) {
+      document.querySelector('#noResult').style.display = 'block'
+    } else {
+      displayRecipes(matchedContents)
+    }
+  } else if (elementsInUl.length !== 0 && searchBarValue.length < 2) {
+    removeArticles()
+    document.querySelector('#noResult').style.display = 'none'
+
+    for (let a = 0; a < elementsInUl.length; a++) {
+      elementsTags.push(elementsInUl[a].innerText)
+    }
+    elementsTags.forEach((tag) => getTags(tag))
+
+    manageElementsList(
+      recipeMatchedTags,
+      ArrayTagsItemIngredients,
+      ArrayTagsItemAppilances,
+      ArrayTagsItemUstenceils
+    )
+    displayRecipes(recipeMatchedTags)
+  } else {
+    return false
+  }
+}
+
+/**
+ * removeArticles - Affiche les recettes
+ **/
 function displayRecipes(recipes) {
   removeArticles()
   recipes.forEach((recipe) => {
@@ -98,6 +152,9 @@ function displayRecipes(recipes) {
   })
 }
 
+/**
+ * removeArticles - Efface les recettes affichées
+ **/
 function removeArticles() {
   const articles = document.querySelectorAll('article')
   articles.forEach((element) => element.remove())

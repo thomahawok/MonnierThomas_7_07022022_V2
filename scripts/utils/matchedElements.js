@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/**
+ * matchContent - filtre les recettes en fonction de l'input de la searchBar et
+ * des recettes qui lui sont transmises.
+ **/
 function matchContent(request, filtredRecipes) {
-  console.log(request)
-  console.log(filtredRecipes)
   matchedContents = []
   let recipesMatched = filtredRecipes.filter((recipe) => {
     return (
@@ -11,18 +13,20 @@ function matchContent(request, filtredRecipes) {
       recipe.ingredients.some((ingredient) =>
         ingredient.ingredient.toLowerCase().includes(request)
       ) ||
+      recipe.appliance.toLowerCase().includes(request) ||
       recipe.ustensils.some((ustensil) =>
         ustensil.toLowerCase().includes(request)
       )
     )
   })
-  console.log(recipesMatched)
   return recipesMatched
 }
 
+/**
+ * matchedGolbal - filtre les recettes en fonction des élements sélectionnés et
+ * des recettes qui lui sont transmises.
+ **/
 function matchedGolbal(request, recipes) {
-  console.log(request)
-
   matchedIngredients = []
   let matchedIngredientsTag = recipes.filter((recipe) => {
     return recipe.ingredients.some((ingredient) =>
@@ -46,8 +50,6 @@ function matchedGolbal(request, recipes) {
     matchedIngredientsTag.concat(matchedAppilancesTag)
   const recipesMatched = IngredeintApplianceConcnat.concat(matchedUstensilsTag)
   const filteredElements = recipesMatched.filter(onlyUniqueInliste)
-  //console.log(filteredElements)
   ArrrayFiltredElements = [...filteredElements]
-  //console.log(ArrrayFiltredElements)
   return filteredElements
 }

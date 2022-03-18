@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 /**
  * Display Tags - affiche les tags sélectionnés
- * @param {string} element
  */
 function displayTag(e, parentToDisplay) {
   recipeMatchedTags = []
+
   const ilListIng = document.createElement('li')
   if (e.path[2].classList[1] == 'bg-primary') {
     ilListIng.setAttribute(
@@ -45,8 +45,15 @@ function displayTag(e, parentToDisplay) {
   ilListIng.textContent = e.path[0].innerText
   parentToDisplay.appendChild(ilListIng)
 }
-
-function getTags(clickedElement) {
+/**
+ *  getTags - récupère les tags affichés
+ */
+function getTags() {
+  const ArrayTags = []
+  ArrayTagsItemIngredients = []
+  ArrayTagsItemAppilances = []
+  ArrayTagsItemUstenceils = []
+  recipeMatchedTags = []
   const tagsItem = document.querySelectorAll('.tags__item')
   const tagsItemIngredients = document.querySelectorAll(
     'li[data-category="ingredients"]'
@@ -57,15 +64,7 @@ function getTags(clickedElement) {
   const tagsItemUstenceils = document.querySelectorAll(
     'li[data-category="ustensils"]'
   )
-  const ArrayTags = []
-  ArrayTagsItemIngredients = []
-  ArrayTagsItemAppilances = []
-  ArrayTagsItemUstenceils = []
-  recipeMatchedTags = []
 
-  const recipesUses = recipes
-  matchedGolbal(clickedElement, recipesUses)
-  filtredRecipes = matchedGolbal(clickedElement, recipesUses)
   tagsItem.forEach((tag) => {
     ArrayTags.push(tag.innerText)
   })
@@ -82,72 +81,4 @@ function getTags(clickedElement) {
   ArrayTags.forEach((element) => {
     recipeMatchedTags = [...matchedGolbal(element, ArrrayFiltredElements)]
   })
-
-  manageElementsList(
-    recipeMatchedTags,
-    ArrayTagsItemIngredients,
-    ArrayTagsItemAppilances,
-    ArrayTagsItemUstenceils
-  )
-
-  displayRecipes(recipeMatchedTags)
-  //manageTagsAndSearchBar()
-}
-
-function manageTagsAndSearchBar() {
-  let searchBarValue = document.querySelector('#search-input').value
-
-  //console.log(valueInputSearchBar)
-
-  let elementsInUl = document.querySelectorAll('#tags ul li')
-  //console.log(displayedTag)
-  console.log(elementsInUl)
-  const elementsTags = []
-  if (elementsInUl.length == 0 && searchBarValue.length > 2) {
-    removeArticles()
-    matchedContents = matchContent(searchBarValue, recipes)
-
-    if (matchedContents.length == 0) {
-      document.querySelector('#noResult').style.display = 'block'
-    } else {
-      document.querySelector('#noResult').style.display = 'none'
-      displayRecipes(matchedContents)
-      displayElementsList(getIngredients(matchedContents), buttonIngretients)
-      displayElementsList(getAppliances(matchedContents), buttonAppliances)
-      displayElementsList(getUstensils(matchedContents), buttonUstensils)
-    }
-  } else if (elementsInUl.length == 0 && searchBarValue.length < 2) {
-    document.querySelector('#noResult').style.display = 'none'
-    displayRecipes(recipes)
-    displayElementsList(getIngredients(recipes), buttonIngretients)
-    displayElementsList(getAppliances(recipes), buttonAppliances)
-    displayElementsList(getUstensils(recipes), buttonUstensils)
-  } else if (elementsInUl.length !== 0 && searchBarValue.length > 2) {
-    removeArticles()
-
-    matchedContents = matchContent(searchBarValue, recipeMatchedTags)
-    console.log(filtredRecipes)
-    console.log(matchedContents)
-    if (matchedContents.length == 0) {
-      document.querySelector('#noResult').style.display = 'block'
-    } else {
-      document.querySelector('#noResult').style.display = 'none'
-      displayRecipes(matchedContents)
-
-      displayElementsList(getIngredients(matchedContents), buttonIngretients)
-      displayElementsList(getAppliances(matchedContents), buttonAppliances)
-      displayElementsList(getUstensils(matchedContents), buttonUstensils)
-    }
-  } else if (elementsInUl.length !== 0 && searchBarValue.length < 2) {
-    removeArticles()
-    document.querySelector('#noResult').style.display = 'none'
-    for (let a = 0; a < elementsInUl.length; a++) {
-      elementsTags.push(elementsInUl[a].innerText)
-    }
-    elementsTags.forEach((tag) => console.log(getTags(tag)))
-    console.log(recipeMatchedTags)
-    //displayRecipes(recipeMatchedTags)
-  } else {
-    return false
-  }
 }
