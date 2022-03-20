@@ -41,19 +41,28 @@ class Main {
         const inputPlaceHoder = e.path[2].children[0].placeholder
         const divButton = e.path[2]
         const recipesUses = recipes
-        filtredRecipes = matchedGolbal(clickedElement, recipesUses)
-        displayTag(e, ulElementDomTag)
-        buttonInputPlaceHolder(divButton, inputPlaceHoder)
-        getTags(clickedElement)
-        manageDisplay()
-        ArrayListElements = []
+        if (e.target.tagName == 'LI') {
+          filtredRecipes = matchedGolbal(clickedElement, recipesUses)
+          displayTag(e, ulElementDomTag)
+          buttonInputPlaceHolder(divButton, inputPlaceHoder)
+          getTags(clickedElement)
+          manageDisplay()
+          ArrayListElements = []
+        }
+        {
+          return false
+        }
       })
     })
 
     /** effacer les tags sélectionnés **/
-    const tags = document.querySelector('#tags')
+    const tags = document.querySelector('#tags ul')
     tags.addEventListener('click', (e) => {
-      e.path[0].remove()
+      if (e.target.tagName == 'LI') {
+        e.target.remove()
+      } else {
+        return false
+      }
       manageDisplay()
     })
 
