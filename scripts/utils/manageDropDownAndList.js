@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /**
- * Au click, modifie l'intitulé du "placeholder" des bouttons
+ * buttonInputPlaceHolder - Au click, modifie l'intitulé du "placeholder" des bouttons
  **/
 function buttonInputPlaceHolder(eventPath, placeholder) {
   if (eventPath.attributes[0].ownerElement.classList[6] == 'filter--active') {
@@ -33,6 +33,9 @@ function buttonInputPlaceHolder(eventPath, placeholder) {
   }
 }
 
+/**
+ * manageElementsList - Gère la liste des éléments (ingrédients, appareils, ustensils)
+ **/
 function manageElementsList(
   filtredRecipes,
   ArrayTagsItemIngredients,
@@ -58,6 +61,9 @@ function manageElementsList(
   )
 }
 
+/**
+ * getElementList - A l'input sur un boutton, récupère la liste des éléments associés
+ **/
 function getElementList(ingredeintsListChildren) {
   for (let i = 0; i < ingredeintsListChildren.length; i++) {
     ArrayListElements.push(ingredeintsListChildren[i].innerText)
@@ -66,9 +72,8 @@ function getElementList(ingredeintsListChildren) {
 }
 
 /**
- * DisplayListe - affiche les listes des éléments au dessous des bouttons
+ * displayElementsList - Affiche les listes des éléments au dessous des bouttons
  **/
-
 function displayElementsList(recipesMatch, button, category) {
   /* 1. efface la liste */
   const ingredientsInDropDown = button.lastElementChild
