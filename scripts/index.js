@@ -41,19 +41,28 @@ class Main {
         const inputPlaceHoder = e.path[2].children[0].placeholder
         const divButton = e.path[2]
         const recipesUses = recipes
-        filtredRecipes = matchedGolbal(clickedElement, recipesUses)
-        displayTag(e, ulElementDomTag)
-        buttonInputPlaceHolder(divButton, inputPlaceHoder)
-        getTags()
-        manageDisplay()
-        ArrayListElements = []
+        if (e.target.tagName == 'LI') {
+          filtredRecipes = matchedGolbal(clickedElement, recipesUses)
+          displayTag(e, ulElementDomTag)
+          buttonInputPlaceHolder(divButton, inputPlaceHoder)
+          getTags(clickedElement)
+          manageDisplay()
+          ArrayListElements = []
+        }
+        {
+          return false
+        }
       })
     })
 
     /** effacer les tags sélectionnés **/
-    const tags = document.querySelector('#tags')
+    const tags = document.querySelector('#tags ul')
     tags.addEventListener('click', (e) => {
-      e.path[0].remove()
+      if (e.target.tagName == 'LI') {
+        e.target.remove()
+      } else {
+        return false
+      }
       manageDisplay()
     })
 
@@ -95,8 +104,12 @@ function manageDisplay() {
     removeArticles()
     document.querySelector('#noResult').style.display = 'none'
     matchedContents = matchContent(searchBarValue, recipes)
-    displayRecipes(matchedContents)
-    manageElementsList(matchedContents)
+    if (matchedContents.length == 0) {
+      document.querySelector('#noResult').style.display = 'block'
+    } else {
+      displayRecipes(matchedContents)
+      manageElementsList(matchedContents)
+    }
   } else if (elementsInUl.length == 0 && searchBarValue.length < 2) {
     document.querySelector('#noResult').style.display = 'none'
     displayRecipes(recipes)

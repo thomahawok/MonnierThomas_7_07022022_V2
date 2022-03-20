@@ -45,15 +45,17 @@ function displayTag(e, parentToDisplay) {
   ilListIng.textContent = e.path[0].innerText
   parentToDisplay.appendChild(ilListIng)
 }
+
 /**
  *  getTags - récupère les tags affichés
  */
-function getTags() {
+function getTags(clickedElement) {
   const ArrayTags = []
   ArrayTagsItemIngredients = []
   ArrayTagsItemAppilances = []
   ArrayTagsItemUstenceils = []
   recipeMatchedTags = []
+  const recipesUses = recipes
   const tagsItem = document.querySelectorAll('.tags__item')
   const tagsItemIngredients = document.querySelectorAll(
     'li[data-category="ingredients"]'
@@ -64,11 +66,10 @@ function getTags() {
   const tagsItemUstenceils = document.querySelectorAll(
     'li[data-category="ustensils"]'
   )
-
+  filtredRecipes = matchedGolbal(clickedElement, recipesUses)
   tagsItem.forEach((tag) => {
     ArrayTags.push(tag.innerText)
   })
-
   tagsItemIngredients.forEach((tag) => {
     ArrayTagsItemIngredients.push(tag.innerText)
   })

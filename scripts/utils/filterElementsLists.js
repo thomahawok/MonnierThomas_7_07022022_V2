@@ -47,7 +47,7 @@ function getUstensils(filtredRecipes, tagsItemUstenceils) {
  *
  **/
 function filterElementList(getedElements, anyArrayTags) {
-  const filteredElement = getedElements.filter(onlyUniqueInliste)
+  const filteredElement = [...new Set(getedElements)]
   filteredElement.sort((a, b) => a.localeCompare(b))
   if (anyArrayTags) {
     return filterListeAndTags(filteredElement, anyArrayTags)
@@ -58,6 +58,7 @@ function filterElementList(getedElements, anyArrayTags) {
 
 /**
  * onlyUniqueInliste - Supprime les doublons.
+ * onlyUniqueInliste - plus utilisée - remplacée par [...new Set(quelquechose)].
  **/
 function onlyUniqueInliste(value, index, self) {
   return self.indexOf(value) === index
