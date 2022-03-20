@@ -33,50 +33,6 @@
   }
 }
 
-/* filer buttons*/
-/*
-.filter {
-  color: white;
-}
-.filter::before {
-  content: '';
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  padding: 28px;
-  top: 0;
-  right: 0;
-  background: url(../assets/arrow.svg) no-repeat center;
-  transition: transform 0.3s ease-in-out;
-}
-*/
-/* drop down menu */
-/*
-.dropDown {
-  margin-bottom: 2rem;
-
-  & input::placeholder {
-    color: white;
-    font-weight: bold;
-  }
-
-  & input {
-    color: white;
-    font-weight: bold;
-  }
-
-  & datalist option {
-    color: blue;
-    background-color: blue;
-    background: blue;
-  }
-  
-  &__ingredient > li {
-    cursor: pointer;
-  }
-  
-}
-*/
 .btn-group,
 .btn-group-vertical {
   position: relative;
@@ -85,7 +41,6 @@
 }
 
 /* card recipes */
-
 .card {
   &__img {
     background-color: rgb(165, 165, 165);
