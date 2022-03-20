@@ -44,7 +44,7 @@ class Main {
         filtredRecipes = matchedGolbal(clickedElement, recipesUses)
         displayTag(e, ulElementDomTag)
         buttonInputPlaceHolder(divButton, inputPlaceHoder)
-        getTags()
+        getTags(clickedElement)
         manageDisplay()
         ArrayListElements = []
       })
@@ -95,8 +95,12 @@ function manageDisplay() {
     removeArticles()
     document.querySelector('#noResult').style.display = 'none'
     matchedContents = matchContent(searchBarValue, recipes)
-    displayRecipes(matchedContents)
-    manageElementsList(matchedContents)
+    if (matchedContents.length == 0) {
+      document.querySelector('#noResult').style.display = 'block'
+    } else {
+      displayRecipes(matchedContents)
+      manageElementsList(matchedContents)
+    }
   } else if (elementsInUl.length == 0 && searchBarValue.length < 2) {
     document.querySelector('#noResult').style.display = 'none'
     displayRecipes(recipes)
