@@ -1,7 +1,5 @@
 # MonnierThomas_7_07022022_V2
 
-![logo](asset/logo.png)
-
 # OpenClassrooms - Parcours Développeur Front-end
 
 ## <a id="start">Projet 7 - Les petits plats</a>
@@ -95,12 +93,8 @@ Puis des boucles **for** sur toutes les recettes renvois une correspondance trou
 
 Pour les tags, chaque tag est considéré comme des mots clés et sont prioritaires sur le résultat de la recherche.
 
-_(figure 1 - 2)_
-
 **Algorithmes utilisant une approche fonctionnelle :**
 Le principe est de faire une boucle **forEach** sur chaque mot clé pour rechercher une correspondance sur le titre, la description, les ingrédients, les appareils et les ustensiles. La méthode **filter** sur chaque recette renvois une correspondance et l’ajoute au tableau de résultat. Chaque tag sont considérés comme des mots clés et sont prioritaires sur le résultat de la recherche.
-
-_(figure 1 - 3)_
 
 **Figure 1 - Algorigramme**
 **Fonctionnement global**
@@ -108,12 +102,12 @@ _(figure 1 - 3)_
 ![figure1](doc/Algorigramme-overall%20functioning.jpg)
 
 **Figure 2 - Algorigramme**
-**Fonctionnement algorithme de recherche - boucles forEach**
-![figure2](doc/Algorigramme%20-search%20for.jpg)
+**Fonctionnement algorithme de recherche - boucles for**
+![figure2](doc/Algorigramme%20-Algorithms%20using%20native%20for%20loops%20.jpg)
 
 **Figure 3 - Algorigramme**
-**Fonctionnement algorithme de recherche - boucle for**
-![figure3](s)
+**Fonctionnement algorithme de recherche - boucle forEach**
+![figure3](doc/Algorigramme%20-Algorithms%20using%20filter%20method.jpg)
 
 #### **Paramètres de recherche avec 3 cas d’utilisation**
 
@@ -149,13 +143,20 @@ Temps en fonction des 3 cas d’usage de la recherche avancée.
 
 | | | **CAS N1** | **CAS N2** | **CAS N3** |
 | | | _console.time('OnlyInput')_ | _console.time('OnlyTag')_ | _console.time('InputAndTag')_ |
-| :----- | :----------------- | :-------------------------------: | :---------------------------------: | :-------------------------------: |
-| **V1** | Algo boucle native | **0.00415039 ms** | **0.00195312 ms** | **0.002929 ms** |
-| **V2** | Algo fonctionnel | 117173 (98.64%) | 20302 (97.37%) | 6042 (82.08%) |
+| :-----:| :--------------------------:| :-------------------------: | :---------------------------------: | :-------------------------------: |
+| **V1** | Algo boucle native | **0.001953125 ms** | **0.00317381 ms** | **0.002929 ms** |
+| **V2** | Algo fonctionnel | **0.003173828 ms** | **0.00415039 ms** | **0.004150 ms** |
 
 **V1 CAS N1**  
-![test1](doc/V1-CAS1%20-%20SearchOnly.pngCASN1.png)  
+![test1](doc/V1-CAS1%20-%20SearchOnly.png)  
 **V1 CAS N2**  
 ![test2](doc/V1-CAS2%20-%20TagOnly.png)  
 **V1 CAS N3**  
 ![test3](doc/V1-CAS3%20-%20TagAndSeach.png)
+
+**V2 CAS N1**  
+![test1](doc/V2-CAS1%20-%20SearchOnly.png)  
+**V2 CAS N2**
+![test2](doc/V2-CAS2%20-%20TagOnly.png)  
+**V2 CAS N3**  
+![test3](doc/V2-CAS3%20-%20TagAndSeach.png)
