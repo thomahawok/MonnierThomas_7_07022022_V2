@@ -95,12 +95,8 @@ Puis des boucles **for** sur toutes les recettes renvois une correspondance trou
 
 Pour les tags, chaque tag est considéré comme des mots clés et sont prioritaires sur le résultat de la recherche.
 
-_(figure 1 - 2)_
-
 **Algorithmes utilisant une approche fonctionnelle :**
 Le principe est de faire une boucle **forEach** sur chaque mot clé pour rechercher une correspondance sur le titre, la description, les ingrédients, les appareils et les ustensiles. La méthode **filter** sur chaque recette renvois une correspondance et l’ajoute au tableau de résultat. Chaque tag sont considérés comme des mots clés et sont prioritaires sur le résultat de la recherche.
-
-_(figure 1 - 3)_
 
 **Figure 1 - Algorigramme**
 **Fonctionnement global**
