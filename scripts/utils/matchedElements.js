@@ -6,7 +6,6 @@
  **/
 function matchContent(request, filtredRecipes) {
   matchedContents = []
-  console.time('recipesMatched')
   let recipesMatched = filtredRecipes.filter((recipe) => {
     return (
       recipe.name.toLowerCase().includes(request) ||
@@ -20,7 +19,6 @@ function matchContent(request, filtredRecipes) {
       )
     )
   })
-  console.timeEnd('recipesMatched')
   return recipesMatched
 }
 
@@ -30,7 +28,6 @@ function matchContent(request, filtredRecipes) {
  **/
 function matchedGolbal(request, recipes) {
   matchedIngredients = []
-  console.time('filteredElements')
   let matchedIngredientsTag = recipes.filter((recipe) => {
     return recipe.ingredients.some((ingredient) =>
       ingredient.ingredient.toLowerCase().includes(request)
@@ -54,6 +51,5 @@ function matchedGolbal(request, recipes) {
   const recipesMatched = IngredeintApplianceConcnat.concat(matchedUstensilsTag)
   const filteredElements = [...new Set(recipesMatched)]
   ArrrayFiltredElements = [...filteredElements]
-  console.timeEnd('filteredElements')
   return filteredElements
 }
