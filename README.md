@@ -1,7 +1,5 @@
 # MonnierThomas_7_07022022_V2
 
-![logo](asset/logo.svg)
-
 # OpenClassrooms - Parcours Développeur Front-end
 
 ## <a id="start">Projet 7 - Les petits plats</a>
@@ -105,7 +103,7 @@ Le principe est de faire une boucle **forEach** sur chaque mot clé pour recherc
 
 **Figure 2 - Algorigramme**
 **Fonctionnement algorithme de recherche - boucles for**
-![figure2](doc/Algorigramme%20-Algorithms%20using%20native%20for%20loops.jpg)
+![figure2](doc/Algorigramme%20-Algorithms%20using%20native%20for%20loops%20.jpg)
 
 **Figure 3 - Algorigramme**
 **Fonctionnement algorithme de recherche - boucle forEach**
