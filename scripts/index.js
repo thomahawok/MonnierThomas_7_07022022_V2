@@ -45,7 +45,7 @@ class Main {
           filtredRecipes = matchedGolbal(clickedElement, recipesUses)
           displayTag(e, ulElementDomTag)
           buttonInputPlaceHolder(divButton, inputPlaceHoder)
-          getTags(clickedElement)
+          //getTags(clickedElement)
           manageDisplay()
           ArrayListElements = []
         }
@@ -107,6 +107,10 @@ function manageDisplay() {
     if (matchedContents.length == 0) {
       document.querySelector('#noResult').style.display = 'block'
     } else {
+      console.time('OnlyInput')
+      matchedContents
+      console.timeEnd('OnlyInput')
+
       displayRecipes(matchedContents)
       manageElementsList(matchedContents)
     }
@@ -130,6 +134,10 @@ function manageDisplay() {
     if (matchedContents.length == 0) {
       document.querySelector('#noResult').style.display = 'block'
     } else {
+      console.time('InputAndTag')
+      matchedContents
+      console.timeEnd('InputAndTag')
+
       displayRecipes(matchedContents)
     }
   } else if (elementsInUl.length !== 0 && searchBarValue.length < 2) {
@@ -147,6 +155,11 @@ function manageDisplay() {
       ArrayTagsItemAppilances,
       ArrayTagsItemUstenceils
     )
+
+    console.time('OnlyTag')
+    recipeMatchedTags
+    console.timeEnd('OnlyTag')
+
     displayRecipes(recipeMatchedTags)
   } else {
     return false

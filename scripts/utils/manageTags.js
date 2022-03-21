@@ -65,7 +65,12 @@ function getTags(clickedElement) {
   const tagsItemUstenceils = document.querySelectorAll(
     'li[data-category="ustensils"]'
   )
+
+  /* filtredRecipes - récupére les recettes corresepondantes au tag fermé*/
+  /* est utilisé pour gérer les listes d'ingrédients (getIngredients, getAppliances...)*/
+  /* est renvoyer également à mactcContent pour gérer les recettes à filtrer de la SeachBar*/
   filtredRecipes = matchedGolbal(clickedElement, recipesUses)
+
   tagsItem.forEach((tag) => {
     ArrayTags.push(tag.innerText)
   })
@@ -78,6 +83,8 @@ function getTags(clickedElement) {
   tagsItemUstenceils.forEach((tag) => {
     ArrayTagsItemUstenceils.push(tag.innerText)
   })
+
+  /* ArrayTags.forEach... - récupére les recettes filtrer sans reprendre l'ensemble des recettes*/
   ArrayTags.forEach((element) => {
     recipeMatchedTags = [...matchedGolbal(element, ArrrayFiltredElements)]
   })

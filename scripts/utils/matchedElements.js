@@ -8,25 +8,33 @@ function matchContent(request, filtredRecipes) {
   matchedContents = []
   let brutRecipesMatched = []
   let recipesMatched = []
-  console.time('recipesMatched')
-  for (let i = 0; i < filtredRecipes.length; i++) {
-    for (let j = 0; j < filtredRecipes[i].ingredients.length; j++) {
-      for (let k = 0; k < filtredRecipes[i].ustensils.length; k++) {
-        if (
-          filtredRecipes[i].name.toLowerCase().includes(request) ||
-          filtredRecipes[i].description.toLowerCase().includes(request) ||
-          filtredRecipes[i].ingredients[j].ingredient
-            .toLowerCase()
-            .includes(request) ||
-          filtredRecipes[i].appliance.toLowerCase().includes(request) ||
-          filtredRecipes[i].ustensils[k].toLowerCase().includes(request)
-        ) {
-          brutRecipesMatched.push(filtredRecipes[i])
+
+  let requestsArray = request.split(' ')
+  for (let a = 0; a < requestsArray.length; a++) {
+    for (let i = 0; i < filtredRecipes.length; i++) {
+      for (let j = 0; j < filtredRecipes[i].ingredients.length; j++) {
+        for (let k = 0; k < filtredRecipes[i].ustensils.length; k++) {
+          if (
+            filtredRecipes[i].name.toLowerCase().includes(requestsArray[a]) ||
+            filtredRecipes[i].description
+              .toLowerCase()
+              .includes(requestsArray[a]) ||
+            filtredRecipes[i].ingredients[j].ingredient
+              .toLowerCase()
+              .includes(requestsArray[a]) ||
+            filtredRecipes[i].appliance
+              .toLowerCase()
+              .includes(requestsArray[a]) ||
+            filtredRecipes[i].ustensils[k]
+              .toLowerCase()
+              .includes(requestsArray[a])
+          ) {
+            brutRecipesMatched.push(filtredRecipes[i])
+          }
         }
       }
     }
   }
-  console.timeEnd('recipesMatched')
   recipesMatched = [...new Set(brutRecipesMatched)]
   return recipesMatched
 }
@@ -36,7 +44,6 @@ function matchContent(request, filtredRecipes) {
  * des recettes qui lui sont transmises.
  **/
 function matchedGolbal(request, recipes) {
-  console.time('filteredElements')
   matchedIngredients = []
   let matchedIngredientsTag = []
 
@@ -73,6 +80,5 @@ function matchedGolbal(request, recipes) {
   const recipesMatched = IngredeintApplianceConcnat.concat(matchedUstensilsTag)
   const filteredElements = [...new Set(recipesMatched)]
   ArrrayFiltredElements = [...filteredElements]
-  console.timeEnd('filteredElements')
   return filteredElements
 }
