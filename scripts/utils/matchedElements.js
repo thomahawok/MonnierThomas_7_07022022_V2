@@ -44,8 +44,6 @@ function matchContent(request, filtredRecipes) {
  * des recettes qui lui sont transmises.
  **/
 function matchedGolbal(request, recipes) {
-  console.log(request)
-  console.log(recipes)
   matchedIngredients = []
   let matchedIngredientsTag = []
 
@@ -81,6 +79,5 @@ function matchedGolbal(request, recipes) {
     matchedIngredientsTag.concat(matchedAppilancesTag)
   const recipesMatched = IngredeintApplianceConcnat.concat(matchedUstensilsTag)
   filteredElements = [...new Set(recipesMatched)]
-  //ArrrayFiltredElements = [...filteredElements]
   return filteredElements
 }
