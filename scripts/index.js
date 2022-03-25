@@ -38,14 +38,10 @@ class Main {
     elementList.forEach((element) => {
       element.addEventListener('click', (e) => {
         e.stopPropagation()
-        //clickedElement = e.path[0].innerText
         const ulElementDomTag = e.path[5].children[1].children[0]
         const inputPlaceHoder = e.path[2].children[0].placeholder
         const divButton = e.path[2]
-        //const recipesUses = recipes
         if (e.target.tagName == 'LI') {
-          //filtredRecipes = matchedGolbal(clickedElement, recipesUses)
-          //getTags(clickedElement)
           displayTag(e, ulElementDomTag)
           buttonInputPlaceHolder(divButton, inputPlaceHoder)
           manageDisplay()
