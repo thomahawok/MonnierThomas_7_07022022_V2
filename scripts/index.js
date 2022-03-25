@@ -7,11 +7,12 @@ let matchedAppilances = []
 let matchedUstensils = []
 let filtredRecipes = []
 let recipeMatchedTags = []
-let ArrrayFiltredElements = []
-let ArrayTagsItemIngredients = []
-let ArrayTagsItemAppilances = []
-let ArrayTagsItemUstenceils = []
-let ArrayListElements = []
+let filteredElements = []
+let arrayTagsItemIngredients = []
+let arrayTagsItemAppilances = []
+let arrayTagsItemUstenceils = []
+let arrayListElements = []
+let ArrayTags = []
 
 const buttonIngretients = document.querySelector('.bg-primary')
 const buttonAppliances = document.querySelector('.bg-success')
@@ -36,18 +37,19 @@ class Main {
     const elementList = document.querySelectorAll('.filter ul')
     elementList.forEach((element) => {
       element.addEventListener('click', (e) => {
-        const clickedElement = e.path[0].innerText
+        e.stopPropagation()
+        //clickedElement = e.path[0].innerText
         const ulElementDomTag = e.path[5].children[1].children[0]
         const inputPlaceHoder = e.path[2].children[0].placeholder
         const divButton = e.path[2]
-        const recipesUses = recipes
+        //const recipesUses = recipes
         if (e.target.tagName == 'LI') {
-          filtredRecipes = matchedGolbal(clickedElement, recipesUses)
+          //filtredRecipes = matchedGolbal(clickedElement, recipesUses)
+          //getTags(clickedElement)
           displayTag(e, ulElementDomTag)
           buttonInputPlaceHolder(divButton, inputPlaceHoder)
-          //getTags(clickedElement)
           manageDisplay()
-          ArrayListElements = []
+          arrayListElements = []
         }
         {
           return false
@@ -99,7 +101,6 @@ app.main()
 function manageDisplay() {
   let searchBarValue = document.querySelector('#search-input').value
   let elementsInUl = document.querySelectorAll('#tags ul li')
-  const elementsTags = []
   if (elementsInUl.length == 0 && searchBarValue.length > 2) {
     removeArticles()
     document.querySelector('#noResult').style.display = 'none'
@@ -120,16 +121,14 @@ function manageDisplay() {
     manageElementsList(recipes)
   } else if (elementsInUl.length !== 0 && searchBarValue.length > 2) {
     removeArticles()
-    for (let a = 0; a < elementsInUl.length; a++) {
-      elementsTags.push(elementsInUl[a].innerText)
-    }
-    elementsTags.forEach((tag) => getTags(tag))
+    getTags()
+
     matchedContents = matchContent(searchBarValue, recipeMatchedTags)
     manageElementsList(
       matchedContents,
-      ArrayTagsItemIngredients,
-      ArrayTagsItemAppilances,
-      ArrayTagsItemUstenceils
+      arrayTagsItemIngredients,
+      arrayTagsItemAppilances,
+      arrayTagsItemUstenceils
     )
     if (matchedContents.length == 0) {
       document.querySelector('#noResult').style.display = 'block'
@@ -144,16 +143,13 @@ function manageDisplay() {
     removeArticles()
     document.querySelector('#noResult').style.display = 'none'
 
-    for (let a = 0; a < elementsInUl.length; a++) {
-      elementsTags.push(elementsInUl[a].innerText)
-    }
-    elementsTags.forEach((tag) => getTags(tag))
+    getTags()
 
     manageElementsList(
       recipeMatchedTags,
-      ArrayTagsItemIngredients,
-      ArrayTagsItemAppilances,
-      ArrayTagsItemUstenceils
+      arrayTagsItemIngredients,
+      arrayTagsItemAppilances,
+      arrayTagsItemUstenceils
     )
 
     console.time('OnlyTag')

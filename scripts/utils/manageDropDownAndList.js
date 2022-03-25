@@ -38,24 +38,24 @@ function buttonInputPlaceHolder(eventPath, placeholder) {
  **/
 function manageElementsList(
   filtredRecipes,
-  ArrayTagsItemIngredients,
-  ArrayTagsItemAppilances,
-  ArrayTagsItemUstenceils
+  arrayTagsItemIngredients,
+  arrayTagsItemAppilances,
+  arrayTagsItemUstenceils
 ) {
   displayElementsList(
-    getIngredients(filtredRecipes, ArrayTagsItemIngredients),
+    getIngredients(filtredRecipes, arrayTagsItemIngredients),
     buttonIngretients,
     'ingredient'
   )
 
   displayElementsList(
-    getAppliances(filtredRecipes, ArrayTagsItemAppilances),
+    getAppliances(filtredRecipes, arrayTagsItemAppilances),
     buttonAppliances,
     'appilance'
   )
 
   displayElementsList(
-    getUstensils(filtredRecipes, ArrayTagsItemUstenceils),
+    getUstensils(filtredRecipes, arrayTagsItemUstenceils),
     buttonUstensils,
     'ustensil'
   )
@@ -66,9 +66,9 @@ function manageElementsList(
  **/
 function getElementList(ingredeintsListChildren) {
   for (let i = 0; i < ingredeintsListChildren.length; i++) {
-    ArrayListElements.push(ingredeintsListChildren[i].innerText)
+    arrayListElements.push(ingredeintsListChildren[i].innerText)
   }
-  return ArrayListElements
+  return arrayListElements
 }
 
 /**

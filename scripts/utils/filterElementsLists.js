@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /**
  * getIngredients - récupère la lise des ingrédeints en fonction des recettes qui lui sont transmise
@@ -11,7 +12,13 @@ function getIngredients(filtredRecipes, tagsItemIngredients) {
       ingredients.push(recipeIngIng.toLowerCase())
     }
   }
-  return filterElementList(ingredients, tagsItemIngredients)
+  let newFilteredElementIng = []
+  const filteredElementIng = filterElementList(ingredients, tagsItemIngredients)
+
+  newFilteredElementIng = filteredElementIng.filter(
+    (element) => !ArrayTags.includes(element)
+  )
+  return newFilteredElementIng
 }
 
 /**
@@ -142,7 +149,7 @@ function difference(filteredElement, anyArrayTags) {
   }
   return symetricDifference
 }
-/* 
+/*  - plus utilisé ici remplacé par "difference"-
 function filterListeAndTags(filteredElement, anyArrayTags) {
   let symetricDifference = []
   symetricDifference = [
@@ -157,11 +164,11 @@ function filterListeAndTags(filteredElement, anyArrayTags) {
  * filtreElementsListOnInput - filtre les élements (ingrédients, appareils, ustensils)en fonction des mots tapés
  * dans l'input des bouttons.
  **/
-function filtreElementsListOnInput(e, ArrayListElements) {
+function filtreElementsListOnInput(e, arrayListElements) {
   let matchedList = []
-  for (let i = 0; i < ArrayListElements.length; i++) {
-    if (ArrayListElements[i].includes(e.target.value))
-      matchedList.push(ArrayListElements[i].toLowerCase())
+  for (let i = 0; i < arrayListElements.length; i++) {
+    if (arrayListElements[i].includes(e.target.value))
+      matchedList.push(arrayListElements[i].toLowerCase())
   }
   let matchedListNoDouble = [...new Set(matchedList)]
   return matchedListNoDouble
