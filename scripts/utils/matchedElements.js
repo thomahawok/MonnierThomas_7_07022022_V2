@@ -49,7 +49,6 @@ function matchedGolbal(request, recipes) {
   const IngredeintApplianceConcnat =
     matchedIngredientsTag.concat(matchedAppilancesTag)
   const recipesMatched = IngredeintApplianceConcnat.concat(matchedUstensilsTag)
-  const filteredElements = [...new Set(recipesMatched)]
-  ArrrayFiltredElements = [...filteredElements]
+  filteredElements = [...new Set(recipesMatched)]
   return filteredElements
 }

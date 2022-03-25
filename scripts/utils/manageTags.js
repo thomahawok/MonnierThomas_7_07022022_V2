@@ -49,12 +49,19 @@ function displayTag(e, parentToDisplay) {
 /**
  *  getTags - récupère les tags affichés
  */
-function getTags(clickedElement) {
-  const ArrayTags = []
-  ArrayTagsItemIngredients = []
-  ArrayTagsItemAppilances = []
-  ArrayTagsItemUstenceils = []
+function getTags() {
+  ArrayTags = []
+  arrayTagsItemIngredients = []
+  arrayTagsItemAppilances = []
+  arrayTagsItemUstenceils = []
   recipeMatchedTags = []
+  const elementsTags = []
+  let elementsInUl = document.querySelectorAll('#tags ul li')
+
+  for (let a = 0; a < elementsInUl.length; a++) {
+    elementsTags.push(elementsInUl[a].innerText)
+  }
+
   const recipesUses = recipes
   const tagsItem = document.querySelectorAll('.tags__item')
   const tagsItemIngredients = document.querySelectorAll(
@@ -66,20 +73,30 @@ function getTags(clickedElement) {
   const tagsItemUstenceils = document.querySelectorAll(
     'li[data-category="ustensils"]'
   )
-  filtredRecipes = matchedGolbal(clickedElement, recipesUses)
+
   tagsItem.forEach((tag) => {
     ArrayTags.push(tag.innerText)
   })
-  tagsItemIngredients.forEach((tag) => {
-    ArrayTagsItemIngredients.push(tag.innerText)
+
+  elementsTags.forEach((tag) => {
+    /* filtredRecipes - récupére les recettes corresepondantes au tag fermé*/
+    /* est utilisé pour gérer les listes d'ingrédients (getIngredients, getAppliances...)*/
+    /* est renvoyer également à mactcContent pour gérer les recettes à filtrer de la SeachBar*/
+    filtredRecipes = matchedGolbal(tag, recipesUses)
+
+    tagsItemIngredients.forEach((tag) => {
+      arrayTagsItemIngredients.push(tag.innerText)
+    })
+    tagsItemAppilances.forEach((tag) => {
+      arrayTagsItemAppilances.push(tag.innerText)
+    })
+    tagsItemUstenceils.forEach((tag) => {
+      arrayTagsItemUstenceils.push(tag.innerText)
+    })
   })
-  tagsItemAppilances.forEach((tag) => {
-    ArrayTagsItemAppilances.push(tag.innerText)
-  })
-  tagsItemUstenceils.forEach((tag) => {
-    ArrayTagsItemUstenceils.push(tag.innerText)
-  })
+
+  /* ArrayTags.forEach... - récupére les recettes filtrer sans reprendre l'ensemble des recettes*/
   ArrayTags.forEach((element) => {
-    recipeMatchedTags = [...matchedGolbal(element, ArrrayFiltredElements)]
+    recipeMatchedTags = matchedGolbal(element, filteredElements)
   })
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /**
  * getIngredients - récupère la lise des ingrédeints en fonction des recettes qui lui sont transmise
@@ -12,7 +13,14 @@ function getIngredients(filtredRecipes, tagsItemIngredients) {
       ingredients.push(recipeIngIng.toLowerCase())
     })
   })
-  return filterElementList(ingredients, tagsItemIngredients)
+
+  let newFilteredElementIng = []
+  const filteredElementIng = filterElementList(ingredients, tagsItemIngredients)
+
+  newFilteredElementIng = filteredElementIng.filter(
+    (element) => !ArrayTags.includes(element)
+  )
+  return newFilteredElementIng
 }
 
 /**
