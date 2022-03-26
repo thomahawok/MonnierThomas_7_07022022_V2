@@ -60,9 +60,9 @@ function manageElementsList(
 
 function getElementList(ingredeintsListChildren) {
   for (let i = 0; i < ingredeintsListChildren.length; i++) {
-    ArrayListElements.push(ingredeintsListChildren[i].innerText)
+    arrayListElements.push(ingredeintsListChildren[i].innerText)
   }
-  return ArrayListElements
+  return arrayListElements
 }
 
 /**

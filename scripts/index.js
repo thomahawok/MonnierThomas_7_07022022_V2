@@ -69,8 +69,13 @@ class Main {
     btnFilter.forEach((button) => {
       button.addEventListener('click', (e) => {
         const eventPath = e.path[0]
-        const placeholder = e.path[0].children[0].placeholder
-        buttonInputPlaceHolder(eventPath, placeholder)
+        const eventPathChild = e.path[0].children[0]
+        if (eventPathChild !== undefined) {
+          const placeholder = e.path[0].children[0].placeholder
+          buttonInputPlaceHolder(eventPath, placeholder)
+        } else {
+          return false
+        }
       })
       button.addEventListener('input', (e) => {
         const arrayElementsListDropDown = getElementList(

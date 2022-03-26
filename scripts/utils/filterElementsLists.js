@@ -89,8 +89,8 @@ function filterListeAndTags(filteredElement, anyArrayTags) {
  * filtreElementsListOnInput - filtre les élements (ingrédients, appareils, ustensils)en fonction des mots tapés
  * dans l'input des bouttons.
  **/
-function filtreElementsListOnInput(e, ArrayListElements) {
-  let matchedList = ArrayListElements.filter((element) => {
+function filtreElementsListOnInput(e, arrayListElements) {
+  let matchedList = arrayListElements.filter((element) => {
     return element.includes(e.target.value)
   })
   let matchedListNoDouble = matchedList.filter(onlyUniqueInliste)
